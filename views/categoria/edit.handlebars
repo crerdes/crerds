@@ -1,0 +1,26 @@
+{{#each errors}}
+<div class="alert alert-danger">{{text}}</div>
+{{else}}
+
+{{/each}}
+<br>
+<h5 class="text-center">Modificar categoria</h5>
+<div class="card">
+    <div class="card-body">
+        <form action="/categoria/edit/" method="POST" name='form'>
+            <input type="hidden" name="id" value="{{categoria._id}}">
+            <label for="nome">Nome: </label>
+            <input type="text" id="nome" name="nome" placeholder="Nome da Categoria" class="form-control" value="{{categoria.nome}}"> 
+            <label for="desc">Descrição: </label>
+            <input type="text" name="desc" id="desc" placeholder="Descrição" class="form-control" value="{{categoria.desc}}" maxlength="60"> 
+            <br>
+        </form>
+    </div>
+</div>
+
+{{!-- <script>
+
+    //document.getElementById('dateUntil').valueAsDate = new Date("{{moment categoria.dateUntil format='YYYY-MM-DD'}}");
+    //document.getElementById('dateFrom').valueAsDate = new Date("{{moment categoria.dateFrom format='YYYY-MM-DD'}}");
+
+</script> --}}

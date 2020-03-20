@@ -1,0 +1,66 @@
+{{#each errors}}
+<div class="alert alert-danger">{{text}}</div>
+{{else}}
+
+{{/each}}
+<h5 class="text-center">novo anúncio</h5>
+<div class="card">
+    <div class="card-body">
+        <form action="/anuncio/add/nova" method="POST" name="form">
+                  <label for="nome">Categoria Anúncio:</label>
+            <select name="categoria" class="custom-select">
+                {{#each categorias}}
+                <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                <option value="0">Nenhuma categoria de anúncio cadastrada</option>
+                {{/each}}
+            </select>
+            <label for="complemento">Complemento: </label>
+            <input type="complemento" name="complemento" id="complemento" placeholder="Complemento para o anúncio" class="form-control" maxlength="32">
+            <label for="contratante">Anúnciante:</label>
+            <select name="contratante" class="custom-select">
+
+                {{#unless user.adm}}
+
+                    {{#if user._id}}
+                        <option value="{{user._id}}" selected="true">
+                        {{user.nome}}</option>
+                    {{/if}}
+
+                {{else}}
+ 
+                    {{#if user._id}}
+                            <option value="{{user._id}}" selected="true">
+                            {{user.nome}}</option>
+                    {{/if}}
+
+                    {{#each contratantes}}
+                    <option value="{{_id}}">{{nome}}</option>
+                    {{else}}
+                    <option value="0" aria-readonly="true">Nenhum anúncio</option>
+                    {{/each}}
+
+                {{/unless}}
+                
+            </select>
+
+            <label for="dateFrom">Criado em:</label>
+            <input type="date" id="dateFrom" name="dateFrom" placeholder="Criado em" class="form-control" readonly>
+            <label for="desc">Disponível até: </label>
+            <input type="date" name="dateUntil" id="dateUntil" placeholder="Disponível até (DD-MM-AAAA)"
+                class="form-control">
+            <label for="desc">Detalhes: </label>
+            <input type="desc" name="desc" id="desc" placeholder="Detalhes do anúncio" class="form-control"
+                data-provide="datepicker" maxlength="32">
+        </form>
+    </div>
+</div>
+
+<script>
+
+    var dat = new Date();
+    dat.setDate(dat.getDate() + 30)
+    document.getElementById('dateUntil').valueAsDate = dat;
+    document.getElementById('dateFrom').valueAsDate = new Date()
+
+</script>

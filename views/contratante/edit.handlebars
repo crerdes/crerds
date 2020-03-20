@@ -1,0 +1,24 @@
+
+{{#each errors}}
+    <div class="alert alert-danger">{{text}}</div>
+{{else}}
+
+{{/each}}
+
+<h3>Editar dados do Anunciante</h3>
+<div class="card">
+    <div class="card-body">
+        <form action="/contratante/{{action}}/" method="POST" name='form'>
+            <input type="hidden" name="id" value="{{contratante._id}}">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Nome da contratante" class="form-control" value="{{contratante.nome}}" {{stateButton}}>
+            <label for="nome">Contato:</label>
+            <input type="text" id="contato" name="contato" placeholder="E-mail, telefone ou endereço" class="form-control" value="{{contratante.contato}}" {{stateButton}}>     
+            <label for="nome">E-mail:</label>
+            <input type="text" id="email" name="email" placeholder="E-mail" class="form-control" value="{{contratante.email}}" {{stateButton}}>                     
+            <label for="desc">Descrição: </label>
+            <input type="desc" name="desc" id="desc" placeholder="Descrição" class="form-control" value="{{contratante.desc}}" {{stateButton}}>  
+            <br>                      
+        </form>
+    </div>
+</div>

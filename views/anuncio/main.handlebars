@@ -1,0 +1,45 @@
+<br><h2>Anúncios</h2>
+<div class="table-responsive">
+<table class="table table-hover" id="job-table">
+    <thead>
+        <tr>
+            <th>Tipo</th>            
+            <th>Anunciante</th>
+            <th>até</th>
+            <th>Modificar</th>
+            <th>Apagar</th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        {{#each anuncios }}
+        
+        <tr>
+
+            <td>{{this.categoria.nome}}</td>
+            <td>{{this.contratante.nome}}</td>
+            <td>{{moment this.dateUntil format="DD-MM-YYYY"}}</td> 
+            <td>
+                <a href="/anuncio/edit/{{_id}}"><button class="btn btn-secondary btn-sm">Modificar</button></a>
+            </td>
+            <td>
+                <a href="/anuncio/delete/{{_id}}"><button
+                        class="btn btn-outline-danger btn-sm">Apagar</button></a>
+            </td>
+        </tr>
+
+        {{else}}
+        <h4>Nenhuma anuncio registrado!</h4>
+        {{/each}}
+    </tbody>
+</table>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

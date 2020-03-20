@@ -1,0 +1,72 @@
+{{#each errors}}
+<div class="alert alert-danger">{{text}}</div>
+{{else}}
+
+{{/each}}
+<br>
+<h5 class="text-center">Modificar anúncio</h5>
+<div class="card">
+    <div class="card-body">
+        <form action="/anuncio/{{action}}/" method="POST" name='form'>
+            <input type="hidden" name="id" value="{{anuncio._id}}">
+            <label for="categoria">anuncio disponível:</label>
+            <select name="categoria" class="custom-select">
+                {{#if anuncio.categoria._id}}<option value="{{anuncio.categoria._id}}" selected="true">{{anuncio.categoria.nome}}
+                </option>{{/if}}
+                {{#each categorias}}
+                <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                <option value="0">Nenhum anúncio cadastrada</option>
+                {{/each}}
+            </select>
+            <label for="complemento">Complemento: </label>
+            <input type="complemento" name="complemento" id="complemento" placeholder="Complemento para categoria"
+                class="form-control" value="{{anuncio.complemento}}" maxlength="32">
+            <label for="contratante">Anunciante:</label>
+            <select name="contratante" class="custom-select">
+
+                {{#unless user.adm}}
+
+                    {{#if user._id}}
+                        <option value="{{user._id}}" selected="true">
+                        {{user.nome}}</option>
+                    {{/if}}
+
+                {{else}}
+ 
+                    {{#if user._id}}
+                            <option value="{{user._id}}" selected="true">
+                            {{user.nome}}</option>
+                    {{/if}}
+
+                    {{#each contratantes}}
+                    <option value="{{_id}}">{{nome}}</option>
+                    {{else}}
+                    <option value="0" aria-readonly="true">Nenhum anuncio cadastrado</option>
+                    {{/each}}
+
+                {{/unless}}
+
+
+            </select>
+
+            <label for="nome">Desde dê:</label>
+            <input type="date" id="dateFrom" name="dateFrom" placeholder="Disponível desde" class="form-control"
+                {{stateButton}} readonly>
+            <label for="nome">Disponível até:</label>
+            <input type="date" id="dateUntil" name="dateUntil" placeholder="Disponível até" class="form-control"
+                {{stateButton}}>
+            <label for="desc">Descrição: </label>
+            <input type="desc" name="desc" id="desc" placeholder="Descrição" class="form-control" value="{{anuncio.desc}}"
+                {{stateButton}} maxlength="32"> 
+            <br>
+        </form>
+    </div>
+</div>
+
+<script>
+
+    document.getElementById('dateUntil').valueAsDate = new Date("{{moment anuncio.dateUntil format='YYYY-MM-DD'}}");
+    document.getElementById('dateFrom').valueAsDate = new Date("{{moment anuncio.dateFrom format='YYYY-MM-DD'}}");
+
+</script>

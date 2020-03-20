@@ -1,0 +1,27 @@
+
+{{#each errors}}
+    <div class="alert alert-danger">{{text}}</div>
+{{else}}
+
+{{/each}}
+
+<h3>Novo Anunciante</h3>
+<div class="card">
+    <div class="card-body">
+        <form action="/contratante/add/nova" method="POST" name="form">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Nome da Anúncio" class="form-control">
+            <label for="nome">contato:</label>
+            <input type="text" id="contato" name="contato" placeholder="Número do contato" class="form-control">     
+            <label for="nome">E-mail:</label>
+            <input type="text" id="email" name="email" placeholder="E-mail" class="form-control">                     
+            <label for="desc">Descrição: </label>
+            <input type="desc" name="desc" id="desc" placeholder="Descrição" class="form-control">
+            <br>           
+        </form>
+    </div>
+</div>
+
+<script>
+
+</script>

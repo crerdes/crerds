@@ -1,0 +1,47 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<table class="table table-borderless">
+    
+    <tbody id="myTable">
+
+        {{#each anuncios}}
+        <tr>
+            <td>
+                <div class="card">
+                    <div class="card-header">{{this.categoria.nome}} {{this.complemento}}</div>
+                    <div class="card-body">
+                        <div class="card-title">
+                            <p class="card-text">Detalhes do anúncio:</p>{{this.desc}}
+                        </div>
+                        <div class="card-title">
+                            <p class="card-text">Anunciante:</p>{{this.contratante.nome}} 
+                        </div>
+                        {{#if this.dateUntil}}
+                        <div class="card-title">
+                            <p class="card-text">Disp.desde:</p>{{moment this.dateFrom format="DD-MM-YYYY"}} até: {{moment this.dateUntil format="DD-MM-YYYY"}}
+                        </div>
+                        {{/if}}   
+                        {{#if this.contratante.contato}}
+                        <div class="card-title">
+                            <p class="card-text">Contato:</p>{{this.contratante.contato}}
+                        </div>    
+                        {{/if}}                                          
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {{else}}
+        <h4>Nenhum anúncio dispnível</h4>
+        {{/each}}
+
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

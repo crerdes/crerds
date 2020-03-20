@@ -130,10 +130,6 @@ const server = http.createServer((req, res) => {
     res.end('Hello Umbler!');
 });
 
-
-
-//const mong = "geonosis.mongodb.umbler.com:49046";
-
 const lmong = "mongodb://localhost/data1";
 
 // Mongooose

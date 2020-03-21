@@ -9,11 +9,10 @@ $(document).ready(function (req, res) {
 });
 
 $('#bodyMain').click(function (e) {
-    var bar = $('#sidebar')
-    window.alert(bar.getAttribute("Class"))
-    if (bar.getAttribute("Class") === "mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar") {
+    if ($('#sidebar')){
+    if ($('#sidebar').getAttribute("Class") === "mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar") {
         $('#sidebar').toggleClass('active');
-       // hiddenField()
+      }
     }
 });
 

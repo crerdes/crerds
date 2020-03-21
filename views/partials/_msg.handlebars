@@ -1,0 +1,35 @@
+{{#if success_msg}}
+<div class="modal fade" id="overlay">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="alert alert-success" id="overlay">{{success_msg}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+
+{{#if error_msg}}
+<div class="modal fade" id="overlay">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="alert alert-danger" id="overlay">{{error_msg}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+
+{{#each error}}
+<div class="modal fade" id="overlay">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="alert alert-danger" id="overlay">{{this}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Anúncie aqui! </title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/css/custom.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+        integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+        integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+        <div class="wrapper">
+
+            <!-- Sidebar  -->
+            <nav id="sidebar" Class="{{sidebar}}">
+                <div class="sidebar-header">
+                    <ul class="list-unstyled CTAs">
+
+                        <li>
+                            <a href="/anuncio/show" class="download"><img height="20" width="20"
+                                    src="/img/beatport.svg">
+                                Anúncios</a>
+                        </li>
+
+                        {{#if user}}
+                        <li>
+                            <a href="/anuncio/add" class="download"><img height="20" width="20"
+                                    src="/img/anuncios.svg"> Anunciar</a>
+                        </li>
+                        {{else}}
+                        <li>
+                            <a href="/usuario/login" class="download"><img height="20" width="20"
+                                    src="/img/anuncios.svg"> Anunciar</a>
+                        </li>
+                        {{/if}}
+                        {{#if user}}
+                        <li>
+                            <a href="/anuncio/contratante/show/user/{{user._id}}" class="download"><img height="20"
+                                    width="20"
+                                    src="https://cdn.jsdelivr.net/npm/simple-icons@2.6.0/icons/airplayvideo.svg"> Meus anúncios</a>
+                        </li>
+                        {{/if}}
+                    </ul>
+                </div>
+
+                <ul class="list-unstyled components">
+                    {{#if categorias }}
+                        <li>
+                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                                <h7>Categoria anúncios</h7>
+                            </a>
+                            <ul class="collapse list-unstyled show" id="pageSubmenu">
+                                {{#each categorias }}
+                                <li>
+                                    <a href="/anuncio/categoria/show/{{this._id}}" class="text-lowercase">{{nome}}</a>
+                                </li>
+                                {{else}}
+                                {{/each}}
+                            </ul>
+                        </li>
+                    {{/if}}
+                    {{!--                 {{#if meusAnuncios }}
+                <li>
+                    <a href="#pageContratantes" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <h7>MEUS ANÚNCIOS</h7>
+                    </a>
+                    <ul class="collapse list-unstyled" id="pageContratantes">
+                        {{#each meusAnuncios }}
+                        <li>
+                            <a href="/anuncio/contratante/show/user/{{this._id}}">
+                                <div class="text-lowercase"></p>{{this.categoria.nome}}&nbsp;
+                                    <br>Até:&nbsp;{{moment this.dateUntil format='DD-MM-YYYY'}}
+                                    <br>{{this.complemento}}
+                                </div>
+                            </a>
+                        </li>
+                        {{else}}
+                        {{/each}}
+                    </ul>
+                </li>{{/if}}      --}}
+                    {{#if user.adm}}
+                    <li>
+                        <a href="#pageCadastros" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                            <h7>Administração</h7>
+                        </a>
+                        <ul class="collapse list-unstyled show" id="pageCadastros">
+                            <li>
+                                <a href="/usuario/main">Usuários</a>
+                            </li>
+                            <li>
+                                <a href="/categoria/show">Categorias de anúncios</a>
+                            </li>
+                            <li>
+                                <a href="/anuncio/show/change">Anúncios</a>
+                            </li>
+                            {{!--                     <li>
+                        <a href="/contratante/main">Anunciantes</a>
+                    </li>                   --}}
+                        </ul>
+                    </li>
+                    {{/if}}
+
+                </ul>
+
+                <ul class="list-unstyled CTAs">
+                    <li class="text-center">{{user.nome}}</li>
+                    {{#if user}}
+                    <li>
+                        <a href="/usuario/logout" class="download">SAIR</a>
+                    </li>
+                    {{/if}}
+                    {{#unless user}}
+                    <li>
+                        <a href="/usuario/login" class="download">ENTRAR</a>
+                    </li>
+                    {{/unless}}
+                </ul>
+
+            </nav>
+
+            <!-- Page Content  -->
+            <div id="content" Class="{{active}}">
+                <div class="sticky-top">            
+                <nav class="navbar navbar-expand-sm navbar-light bg-dark">
+                    <div class="container-fluid">
+                        {{>_navbar}}
+                    </div>
+                </nav>
+                </div>
+                {{>_msg}}
+                <div id="bodyMain">
+                    {{{body}}}
+                </div>
+            </div>
+
+        </div>
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+        <script type="text/javascript" src="/js/hiddenFields.js"></script>
+        <script>
+
+               $('#overlay').modal('show');
+            setTimeout(function() {
+                $('#overlay').modal('hide');
+            }, 2000);
+            
+        </script>
+
+        {{!-- <script src="javascript.js"></script> --}}
+        <!-- Modal -->
+        <div class="modal fade" id="Confirmacao" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
+            aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="TituloModalCentralizado">Confirmação</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {{!--                 <div class="modal-body">
+                    
+                </div> --}}
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            onclick="document.form.submit()">Sim</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Não</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

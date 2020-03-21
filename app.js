@@ -176,40 +176,13 @@ app.get("/", function (req, res) {
 //Outros
 //**************************************************** */
 
-//const port = process.env.PORT || 3000;
-
 //server.listen(port, () =>console.log("Umbler server at port:",port));
-const PORT = 8081
-app.listen(PORT, () => {
-    console.log('Servidor rodando')
-})
+const hostname = '127.0.0.1';
+const port = 3000;
 
-
-//**************************************************** */
-//testes console
-//****************************************************
-/*
-void function(){
-    const mensagem = 'Alura';
-    //console.log(mensagem); // Alura
-
-}();
-
-function getThis () {
-    return this
-  }
-
-  //console.log(getThis()) // undefined
-
-
-  const getThiss = () => {
-    return this
-  }
-
-  //console.log(getThiss()) // Objeto window */
-
-
-
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
 
 
 
